@@ -7,8 +7,9 @@ class CustomButton extends StatelessWidget {
   final Color borderColor;
   final Color textColor;
   final double width;
-  final FontWeight fontWeight; // Added fontWeight
-  final EdgeInsetsGeometry padding; // Added padding
+  final FontWeight fontWeight;
+  final EdgeInsetsGeometry padding;
+  final IconData? icon;
 
   const CustomButton({
     super.key,
@@ -18,8 +19,9 @@ class CustomButton extends StatelessWidget {
     this.borderColor = const Color(0xFFCF353F),
     this.textColor = Colors.white,
     this.width = double.infinity,
-    this.fontWeight = FontWeight.w600, // Default font weight
-    this.padding = const EdgeInsets.symmetric(vertical: 10), // Default padding
+    this.fontWeight = FontWeight.w600,
+    this.padding = const EdgeInsets.symmetric(vertical: 10),
+    this.icon
   });
 
   @override
@@ -34,15 +36,21 @@ class CustomButton extends StatelessWidget {
           color: backgroundColor,
         ),
         width: width,
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: fontWeight,
-              color: textColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null) // Check if icon exists before rendering
+              Icon(icon, color: textColor, size: 18),
+            if (icon != null) const SizedBox(width: 8), // Add spacing if icon is present
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: fontWeight,
+                color: textColor,
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

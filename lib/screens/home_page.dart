@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
         child: Icon(
           Icons.add,
           color: Color(0xFFFF4949),
+          size: 24,
         )
       ),
       body: SafeArea(
@@ -95,7 +96,7 @@ class HomePage extends StatelessWidget {
                               const SizedBox(height: 8),
                               LinearProgressIndicator(
                                 value: 0.8,
-                                backgroundColor: Colors.grey[300],
+                                backgroundColor: Color(0xFFF9F9F9),
                                 color: Color(0xFFCF353F),
                               ),
                               const SizedBox(height: 12),
@@ -107,6 +108,7 @@ class HomePage extends StatelessWidget {
                                     text: 'Pause',
                                     backgroundColor: Color(0xFFFFCC3D),
                                     width: 150,
+                                    textColor: Color(0xFF2B2D42),
                                     borderColor: Colors.transparent,
                                   ),
                                   CustomButton(
@@ -143,7 +145,7 @@ class HomePage extends StatelessWidget {
                               const SizedBox(height: 8),
                               const Text(
                                 "Peri Peri Chicken Breast, Peri Pilaf Rice, Mediterranean Veg, and Homemade Peri Sauce",
-                                style: TextStyle(fontSize: 18, color: Color(0xFF2B2D42), fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 18, color: Color(0xFF2B2D42), fontWeight: FontWeight.w500),
                               ),
                               Divider(),
                               Row(
@@ -165,21 +167,13 @@ class HomePage extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Color(0xFF89DA8C),
                               borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                color: Colors.black.withOpacity(0.4), // Shadow color with opacity
-                                spreadRadius: 0,
-                                blurRadius: 6, // Softness of the shadow
-                                offset: Offset(0, 2),
-                              )
-                              ]
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
+                                 const Text(
                                   "Don’t let hunger win!",
                                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF2B2D42)),
                                 ),
@@ -201,7 +195,7 @@ class HomePage extends StatelessWidget {
                                   borderColor: Colors.transparent,
                                   textColor: Colors.black,
                                   fontWeight: FontWeight.normal,
-                                )
+                                ),
                               ],
                             ),
                           ),

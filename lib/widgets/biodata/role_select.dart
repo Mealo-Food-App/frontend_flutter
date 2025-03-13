@@ -1,4 +1,4 @@
-import 'package:app/widgets/appbar.dart';
+import 'package:app/widgets/biodata/appbar.dart';
 import 'package:app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,38 +30,40 @@ class _RoleSelectionWidgetState extends State<RoleSelectionWidget> {
           Navigator.pop(context)
         },),
         Expanded(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-            color: Colors.transparent,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "What describes you?",
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "What describes you?",
+                      style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      "Pick one of the options below to proceed with the app based on your needs.",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                    SizedBox(height: 20),
+                    _buildRoleOption(0, "Subscriber"),
+                    _buildRoleOption(1, "Restaurant"),
+                  ],
                 ),
-                SizedBox(height: 8),
-                Text(
-                  "Pick one of the options below to proceed with the app based on your needs.",
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              Spacer(),
+              Container(
+                padding: const EdgeInsets.all(16.0),
+                color: Colors.white,
+                child: CustomButton(
+                  onTap: selectedRole != null ? _handleContinue : null,
+                  text: 'Continue',
+                  backgroundColor: selectedRole != null ? Color(0xFFCF353F) : Color.fromRGBO(207, 53, 63, 0.5),
+                  borderColor: selectedRole != null ? Color(0xFFCF353F) : Colors.transparent,
                 ),
-                SizedBox(height: 20),
-                _buildRoleOption(0, "Subscriber"),
-                _buildRoleOption(1, "Restaurant"),
-                Spacer(),
-
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: CustomButton(
-                    onTap: selectedRole != null ? _handleContinue : null,
-                    text: 'Continue',
-                    backgroundColor: selectedRole != null ? Color(0xFFCF353F) : Colors.grey,
-                    borderColor: selectedRole != null ? Color(0xFFCF353F) : Colors.grey,
-                  ),
-                ),
-                SizedBox(height: 20),
-              ],
-            ),
+              ),
+            ],
           ),
         )
       ],
