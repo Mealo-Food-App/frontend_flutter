@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_phosphor_icons: ^0.0.1+6
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,6 +63,11 @@ flutter:
   assets:
    - assets/signin_img.png
    - assets/food.png
+   - assets/order.png
+   - assets/restro2.png
+   - assets/Restaurant.png
+   - assets/bbq.png
+   - assets/peri_peri.png
   fonts:
     - family: Pacifico
       fonts:

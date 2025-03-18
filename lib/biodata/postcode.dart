@@ -1,5 +1,5 @@
-import 'package:app/widgets/biodata/appbar.dart';
-import 'package:app/widgets/custom_button.dart';
+import 'package:app/biodata/appbar.dart';
+import 'package:app/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 

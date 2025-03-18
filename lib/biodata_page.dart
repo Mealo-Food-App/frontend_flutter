@@ -1,9 +1,9 @@
-import 'package:app/widgets/biodata/otp.dart';
-import 'package:app/widgets/biodata/phone.dart';
-import 'package:app/widgets/biodata/postcode.dart';
-import 'package:app/widgets/biodata/restro_intro.dart';
-import 'package:app/widgets/biodata/role_select.dart';
-import 'package:app/widgets/biodata/sub_intro.dart';
+import 'package:app/biodata/otp.dart';
+import 'package:app/biodata/phone.dart';
+import 'package:app/biodata/postcode.dart';
+import 'package:app/biodata/restro_intro.dart';
+import 'package:app/biodata/role_select.dart';
+import 'package:app/biodata/sub_intro.dart';
 import 'package:flutter/material.dart';
 
 class BioDataPage extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:app/widgets/biodata/appbar.dart';
+import 'package:app/biodata/appbar.dart';
 import 'package:flutter/material.dart';
 
 class SubIntroWidget extends StatelessWidget {
