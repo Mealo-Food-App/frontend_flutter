@@ -1,8 +1,10 @@
-import 'package:app/custom_button.dart';
+import 'package:frontend_flutter/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 class CreateSubscriptionPage extends StatefulWidget {
+  const CreateSubscriptionPage({super.key});
+
   @override
   _CreateSubscriptionPageState createState() => _CreateSubscriptionPageState();
 }
@@ -19,7 +21,7 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
     {'meals': 10, 'total': 20},
     {'meals': 12, 'total': 24},
   ];
-  TextEditingController _postcodeController = TextEditingController();
+  final TextEditingController _postcodeController = TextEditingController();
 
   void _showPostcodeModal(BuildContext context) {
     showModalBottomSheet(
@@ -55,27 +57,36 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                 _postcodeController.text.isNotEmpty
                     ? _postcodeController.text
                     : "EC1A 4HD",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
               ),
               // SizedBox(height: 4),
               Text(
                 "Central London",
-                style: TextStyle(fontSize: 20, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                  fontFamily: 'Nunito',
+                ),
               ),
               SizedBox(height: 30),
               CustomButton(
-                onTap: () => {
-                  Navigator.pop(context)
-                },
+                onTap: () => {Navigator.pop(context)},
                 text: 'Add new postcode',
                 backgroundColor: Colors.white,
                 textColor: Color(0xFFCF353F),
               ),
               SizedBox(height: 10),
-              CustomButton(onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/pick_restro');
-              }, text: 'Confirm'),
+              CustomButton(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/pick_restro');
+                },
+                text: 'Confirm',
+              ),
               SizedBox(height: 20),
             ],
           ),
@@ -84,7 +95,6 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,34 +102,42 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
       appBar: AppBar(
         title: Text(
           "Create Subscription",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Nunito',
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(PhosphorIcons.caret_left, size: 24, ),
+          icon: Icon(PhosphorIcons.caret_left, size: 24),
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+      body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
-              child: SizedBox(
-                height: 624,
-                child: SingleChildScrollView(
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       radioButton(),
-                      SizedBox(height: 8,),
+                      SizedBox(height: 8),
                       Text(
                         "Meal Preference",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Nunito',
+                        ),
                       ),
                       SizedBox(height: 8),
                       Container(
@@ -134,27 +152,45 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                             value: selectedPreference,
                             isExpanded: true,
                             icon: Icon(PhosphorIcons.caret_down),
-                            style: TextStyle(fontSize: 18, color: Color(0xFF2B2D42)),
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF2B2D42),
+                              fontFamily: 'Nunito',
+                            ),
                             onChanged: (String? newValue) {
                               setState(() {
                                 selectedPreference = newValue!;
                               });
                             },
-                            items: mealPreferences.map((String preference) {
-                              return DropdownMenuItem<String>(
-                                value: preference,
-                                child: Container(
-                                    color: Colors.white,
-                                    width: double.infinity,
-                                    child: Text(preference)
-                                ),
-                              );
-                            }).toList(),
+                            items:
+                                mealPreferences.map((String preference) {
+                                  return DropdownMenuItem<String>(
+                                    value: preference,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 12,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        //color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        preference,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF2B2D42),
+                                          fontFamily: 'Nunito',
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                           ),
                         ),
                       ),
                       weekRadioButton(),
-                      SizedBox(height: 16,),
+                      SizedBox(height: 16),
                       Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
@@ -169,37 +205,63 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                               children: [
                                 Text(
                                   "Main Meals (10)",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF2B2D42)),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFF2B2D42),
+                                    fontFamily: 'Nunito',
+                                  ),
                                 ),
                                 Text(
                                   "£69.90",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                    fontFamily: 'Nunito',
+                                  ),
                                 ),
                               ],
                             ),
-                            if(selectedMeal != 0)
-                            SizedBox(height: 8),
-                            if(selectedMeal != 0)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Meal per head",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF2B2D42)),
-                                ),
-                                Text(
-                                    (selectedMealsPerWeek / (selectedMeal + 1)).toStringAsFixed(2),
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
-                                ),
-                              ],
-                            ),
+                            if (selectedMeal != 0) SizedBox(height: 8),
+                            if (selectedMeal != 0)
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Meal per head",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFF2B2D42),
+                                      fontFamily: 'Nunito',
+                                    ),
+                                  ),
+                                  Text(
+                                    (selectedMealsPerWeek / (selectedMeal + 1))
+                                        .toStringAsFixed(2),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                      fontFamily: 'Nunito',
+                                    ),
+                                  ),
+                                ],
+                              ),
                             SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Discount",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF2B2D42)),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFF2B2D42),
+                                    fontFamily: 'Nunito',
+                                  ),
                                 ),
                                 Text(
                                   "£16.78 OFF",
@@ -207,13 +269,17 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
+                                    fontFamily: 'Nunito',
                                   ),
                                 ),
                               ],
                             ),
                             SizedBox(height: 10),
                             Container(
-                              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                              padding: EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 16,
+                              ),
                               decoration: BoxDecoration(
                                 color: Color(0xFFD6FFB9),
                                 borderRadius: BorderRadius.circular(8),
@@ -221,11 +287,20 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(PhosphorIcons.percent, color: Color(0xFF37A331), size: 16,),
+                                  Icon(
+                                    PhosphorIcons.percent,
+                                    color: Color(0xFF37A331),
+                                    size: 16,
+                                  ),
                                   SizedBox(width: 8),
                                   Text(
                                     "Price Per Meal:",
-                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xFF2B2D42)),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFF2B2D42),
+                                      fontFamily: 'Nunito',
+                                    ),
                                   ),
                                   SizedBox(width: 4),
                                   Text(
@@ -234,6 +309,7 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF37A331),
+                                      fontFamily: 'Nunito',
                                     ),
                                   ),
                                 ],
@@ -247,49 +323,48 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                 ),
               ),
             ),
-            Spacer(),
             Container(
-              height: 80,
-              width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+              child: SafeArea(
+                top: false,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "£69.90",
                           style: TextStyle(
-                              fontSize: 12,
-                              color: Color(0xFF757575)
+                            fontSize: 12,
+                            color: Color(0xFF757575),
+                            fontFamily: 'Nunito',
                           ),
                         ),
                         Text(
                           "£62.86",
                           style: TextStyle(
-                              fontSize: 24,
-                              color: Color(0xFF2B2D42),
-                            fontWeight: FontWeight.bold
+                            fontSize: 24,
+                            color: Color(0xFF2B2D42),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Nunito',
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                        width: 200,
-                        child: CustomButton(
-                            onTap: () => {
-                              _showPostcodeModal(context)
-                            },
-                            text: "Select Plan"
-                        )
-                    )
+                      width: 200,
+                      child: CustomButton(
+                        onTap: () => {_showPostcodeModal(context)},
+                        text: "Select Plan",
+                      ),
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -302,7 +377,11 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
       children: [
         Text(
           "No. of Meals",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
+          ),
         ),
         SizedBox(height: 8),
         GridView.builder(
@@ -312,7 +391,7 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
             crossAxisCount: 2,
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
-            childAspectRatio: 3
+            childAspectRatio: 3,
           ),
           itemCount: mealOptions.length,
           itemBuilder: (context, index) {
@@ -326,9 +405,12 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: selectedMeal == index ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
+                    color:
+                        selectedMeal == index
+                            ? Color(0xFFCF353F)
+                            : Color(0xFFE0E0E0),
                   ),
-                  color: Colors.transparent
+                  color: Colors.transparent,
                 ),
                 alignment: Alignment.center,
                 child: Row(
@@ -336,8 +418,13 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                   children: [
                     SizedBox(width: 8),
                     Icon(
-                      selectedMeal == index ? PhosphorIcons.radio_button_fill : PhosphorIcons.circle,
-                      color: selectedMeal == index ?  Color(0xFFCF353F) : Color(0xFFD9D9D9),
+                      selectedMeal == index
+                          ? PhosphorIcons.radio_button_fill
+                          : PhosphorIcons.circle,
+                      color:
+                          selectedMeal == index
+                              ? Color(0xFFCF353F)
+                              : Color(0xFFD9D9D9),
                       size: 24,
                     ),
                     SizedBox(width: 8),
@@ -346,7 +433,11 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
-                        color: selectedMeal == index ?  Color(0xFFCF353F) : Color(0xFF2B2D42),
+                        color:
+                            selectedMeal == index
+                                ? Color(0xFFCF353F)
+                                : Color(0xFF2B2D42),
+                        fontFamily: 'Nunito',
                       ),
                     ),
                   ],
@@ -363,10 +454,14 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 8,),
+        SizedBox(height: 8),
         Text(
           "Meals per week",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
+          ),
         ),
         SizedBox(height: 8),
         GridView.builder(
@@ -392,11 +487,11 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: isSelected ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
-                    ),
-                    color: Colors.transparent
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isSelected ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
+                  ),
+                  color: Colors.transparent,
                 ),
                 padding: EdgeInsets.all(12),
                 child: Column(
@@ -405,8 +500,13 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Icon(
-                          isSelected ? PhosphorIcons.radio_button_fill : PhosphorIcons.circle,
-                          color: isSelected  ?  Color(0xFFCF353F) : Color(0xFFD9D9D9),
+                          isSelected
+                              ? PhosphorIcons.radio_button_fill
+                              : PhosphorIcons.circle,
+                          color:
+                              isSelected
+                                  ? Color(0xFFCF353F)
+                                  : Color(0xFFD9D9D9),
                           size: 24,
                         ),
                         SizedBox(width: 12),
@@ -415,14 +515,22 @@ class _CreateSubscriptionPageState extends State<CreateSubscriptionPage> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: isSelected ?  Color(0xFFCF353F) : Color(0xFF2B2D42),
+                            color:
+                                isSelected
+                                    ? Color(0xFFCF353F)
+                                    : Color(0xFF2B2D42),
+                            fontFamily: 'Nunito',
                           ),
-                        )
+                        ),
                       ],
                     ),
                     Text(
                       "Total Meal: $totalMeal",
-                      style: TextStyle(fontSize: 11, color: Color(0xFF757575)),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Color(0xFF757575),
+                        fontFamily: 'Nunito',
+                      ),
                     ),
                   ],
                 ),

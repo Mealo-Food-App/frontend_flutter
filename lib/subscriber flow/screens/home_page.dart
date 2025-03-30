@@ -1,14 +1,14 @@
-import 'package:app/custom_button.dart';
+import 'package:frontend_flutter/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/create_subscription');
         },
@@ -41,22 +41,22 @@ class HomePage extends StatelessWidget {
                           children: [
                             const Text(
                               "Your Plan",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 18, fontFamily: 'Nunito', fontWeight: FontWeight.w700),
                             ),
                             const Divider(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
-                                Text("Upcoming Delivery", style: TextStyle(fontSize: 14, color: Color(0xFF2B2D42))),
-                                Text("Today at 12:30 PM", style: TextStyle(fontSize: 14, color: Color(0xFF2B2D42), fontWeight: FontWeight.w400)),
+                                Text("Upcoming Delivery", style: TextStyle(fontSize: 14, fontFamily: 'Nunito', color: Color(0xFF2B2D42))),
+                                Text("Today at 12:30 PM", style: TextStyle(fontSize: 14, color: Color(0xFF2B2D42), fontFamily: 'Nunito', fontWeight: FontWeight.w600)),
                               ],
                             ),
                             const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
-                                Text("Remaining Meals", style: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w500)),
-                                Text("08/10", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                Text("Remaining Meals", style: TextStyle(fontSize: 14, color: Colors.black, fontFamily: 'Nunito', fontWeight: FontWeight.w700)),
+                                Text("08/10", style: TextStyle(fontSize: 14, fontFamily: 'Nunito', fontWeight: FontWeight.w700)),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -94,7 +94,7 @@ class HomePage extends StatelessWidget {
                     const SizedBox(height: 16),
                     const Text(
                       "Upcoming Order",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 18, fontFamily: 'Nunito', fontWeight: FontWeight.w700),
                     ),
                     Card(
                       color: Colors.white,
@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
                       ),
                       elevation: 3,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -111,14 +111,16 @@ class HomePage extends StatelessWidget {
                             const SizedBox(height: 8),
                             const Text(
                               "Peri Peri Chicken Breast, Peri Pilaf Rice, Mediterranean Veg, and Homemade Peri Sauce",
-                              style: TextStyle(fontSize: 18, color: Color(0xFF2B2D42), fontWeight: FontWeight.w500),
+                              style: TextStyle(fontSize: 18, color: Color(0xFF2B2D42), fontFamily: 'Nunito', fontWeight: FontWeight.w700, height: 1.33),
                             ),
+                            SizedBox(height:8),
                             Divider(),
+                            SizedBox(height:8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
-                                Text("ETA", style: TextStyle(fontSize: 14, color: Color(0xFF2B2D42))),
-                                Text("Today, 2:00 PM", style: TextStyle(fontSize: 14,  color: Color(0xFF2B2D42))),
+                                Text("ETA", style: TextStyle(fontSize: 14, fontFamily: 'Nunito', color: Color(0xFF2B2D42))),
+                                Text("Today, 2:00 PM", style: TextStyle(fontSize: 14, fontFamily: 'Nunito', color: Color(0xFF2B2D42))),
                               ],
                             ),
                           ],
@@ -128,11 +130,12 @@ class HomePage extends StatelessWidget {
 
                     const SizedBox(height: 16),
                     Stack(
+                      clipBehavior: Clip.none,
                       children: [
                         Container(
                           decoration: BoxDecoration(
                             color: Color(0xFF89DA8C),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                           width: double.infinity,
@@ -140,16 +143,15 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "Don’t let hunger win!",
-                                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF2B2D42)),
+                                "Don't let hunger win!",
+                                style: TextStyle(fontSize: 24, fontFamily: 'Nunito', fontWeight: FontWeight.w700, color: Color(0xFF2B2D42)),
                               ),
                               const SizedBox(height: 8),
                               SizedBox(
                                 width: 230,
                                 child: const Text(
                                   "Get surplus meals at really affordable prices, and enjoy amazing food without worrying about your budget.",
-                                  style: TextStyle(fontSize: 12, color: Colors.white),
-
+                                  style: TextStyle(fontSize: 12, fontFamily: 'Nunito', color: Colors.white),
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -160,7 +162,7 @@ class HomePage extends StatelessWidget {
                                 backgroundColor: Colors.white,
                                 borderColor: Colors.transparent,
                                 textColor: Colors.black,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.w300,
                               ),
                             ],
                           ),
@@ -168,10 +170,14 @@ class HomePage extends StatelessWidget {
                         Positioned(
                           bottom: 0,
                           right: 0,
-                          child: SizedBox(
-                            height: 150,
-                            child: Image.asset(
-                                'assets/food.png'
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: SizedBox(
+                              height: 150,
+                              child: Image.asset(
+                                'assets/food.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         )
@@ -184,6 +190,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

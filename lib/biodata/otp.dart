@@ -1,13 +1,14 @@
 import 'dart:async';
-import 'package:app/biodata/appbar.dart';
-import 'package:app/custom_button.dart';
+// Updated imports to use relative paths
+import 'package:frontend_flutter/biodata/appbar.dart';
+import 'package:frontend_flutter/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class OTPWidget extends StatefulWidget {
   final VoidCallback onBack;
   final VoidCallback onContinue;
 
-  OTPWidget({required this.onBack, required this.onContinue});
+  const OTPWidget({super.key, required this.onBack, required this.onContinue});
 
   @override
   _OTPPageState createState() => _OTPPageState();
@@ -44,7 +45,7 @@ class _OTPPageState extends State<OTPWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Appbar(onBack: widget.onBack,),
+        Appbar(onBack: widget.onBack),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -52,23 +53,31 @@ class _OTPPageState extends State<OTPWidget> {
             children: [
               Text(
                 "Verify it's you",
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
               ),
               SizedBox(height: 8),
               Text(
                 "Enter the OTP sent to your phone number to verify your identity.",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                  fontFamily: 'Nunito',
+                ),
               ),
               SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.pin, color: Colors.black),
-                    hintText: "Enter OTP",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
-                    fillColor: Colors.white,
-                    filled: true
+                  prefixIcon: Icon(Icons.pin, color: Colors.black),
+                  hintText: "Enter OTP",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: InputBorder.none,
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
               ),
               SizedBox(height: 20),
@@ -78,18 +87,27 @@ class _OTPPageState extends State<OTPWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Visibility(
-                      visible: !_isResendVisible,
-                      child: Text("We will resend OTP in ${_secondsRemaining}s")
+                    visible: !_isResendVisible,
+                    child: Text(
+                      "We will resend OTP in ${_secondsRemaining}s",
+                      style: TextStyle(fontFamily: 'Nunito'),
+                    ),
                   ),
                   Visibility(
-                      visible: _isResendVisible,
-                      child: Text('Resend Code', style: TextStyle(color: Color(0xFF35CFC1)),)
+                    visible: _isResendVisible,
+                    child: Text(
+                      'Resend Code',
+                      style: TextStyle(
+                        color: Color(0xFF35CFC1),
+                        fontFamily: 'Nunito',
+                      ),
+                    ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

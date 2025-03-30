@@ -1,8 +1,10 @@
-import 'package:app/custom_button.dart';
+import 'package:frontend_flutter/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 class DeliveryAddressPage extends StatefulWidget {
+  const DeliveryAddressPage({super.key});
+
   @override
   _DeliveryAddressPageState createState() => _DeliveryAddressPageState();
 }
@@ -40,70 +42,107 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setModalState) {
-            return Padding(
-              padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom + 16,
-                top: 16,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Container(
-                      width: 50,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[400],
-                        borderRadius: BorderRadius.circular(10),
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+                  top: 24,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 50,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16),
-                  Text("Address", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                  SizedBox(height: 10),
-                  _buildTextField(PhosphorIcons.map_pin, "Number, Street Name", addressController),
-                  SizedBox(height: 10),
-                  _buildTextField(PhosphorIcons.buildings, "Flat Number/Building Number", flatController),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      _buildRadioButton("Home", setModalState),
-                      SizedBox(width: 10),
-                      _buildRadioButton("Office", setModalState),
-                      SizedBox(width: 10),
-                      _buildRadioButton("Other", setModalState),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Text("Where can we leave your meals?", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                  SizedBox(height: 10),
-                  _buildTextField(PhosphorIcons.map_pin, "Place to leave order", leaveOrderController),
-                  SizedBox(height: 20),
-                  CustomButton(
-                    onTap: () {
-                      setState(() {
-                        addresses.add(Address(
-                          type: selectedType,
-                          address: addressController.text,
-                          flatNumber: flatController.text,
-                          leaveOrderAt: leaveOrderController.text,
-                        ));
+                    SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        "Address",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Nunito',
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    _buildTextField(
+                      PhosphorIcons.map_pin,
+                      "Number, Street Name",
+                      addressController,
+                    ),
+                    SizedBox(height: 8),
+                    _buildTextField(
+                      PhosphorIcons.buildings,
+                      "Flat Number/Building Number",
+                      flatController,
+                    ),
+                    SizedBox(height: 12),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        _buildRadioButton("Home", setModalState),
+                        _buildRadioButton("Office", setModalState),
+                        _buildRadioButton("Other", setModalState),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Where can we leave your meals?",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Nunito',
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    _buildTextField(
+                      PhosphorIcons.map_pin,
+                      "Place to leave order",
+                      leaveOrderController,
+                    ),
+                    SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: CustomButton(
+                        onTap: () {
+                          setState(() {
+                            addresses.add(
+                              Address(
+                                type: selectedType,
+                                address: addressController.text,
+                                flatNumber: flatController.text,
+                                leaveOrderAt: leaveOrderController.text,
+                              ),
+                            );
 
-                        // Clear input fields for the next entry
-                        addressController.clear();
-                        flatController.clear();
-                        leaveOrderController.clear();
-                        selectedType = "Home";
-                      });
+                            // Clear input fields for the next entry
+                            addressController.clear();
+                            flatController.clear();
+                            leaveOrderController.clear();
+                            selectedType = "Home";
+                          });
 
-                      Navigator.pop(context);
-                    },
-                    text: 'Continue',
-                  ),
-                ],
+                          Navigator.pop(context);
+                        },
+                        text: 'Continue',
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                  ],
+                ),
               ),
             );
           },
@@ -112,7 +151,11 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
     );
   }
 
-  Widget _buildTextField(IconData icon, String hintText, TextEditingController controller) {
+  Widget _buildTextField(
+    IconData icon,
+    String hintText,
+    TextEditingController controller,
+  ) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -129,39 +172,51 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
     );
   }
 
-  Widget _buildRadioButton(String value, void Function(void Function()) setModalState) {
+  Widget _buildRadioButton(
+    String value,
+    void Function(void Function()) setModalState,
+  ) {
     return InkWell(
       onTap: () {
         setModalState(() {
           selectedType = value;
         });
       },
+      borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
           border: Border.all(
-            color: selectedType == value ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
+            color:
+                selectedType == value ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
+            width: 1.5,
           ),
           borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
+          color:
+              selectedType == value
+                  ? Color(0xFFCF353F).withOpacity(0.1)
+                  : Colors.white,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(width: 16),
             Icon(
-              selectedType == value ? PhosphorIcons.circle_fill : PhosphorIcons.circle,
-              color: selectedType == value ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
+              selectedType == value
+                  ? PhosphorIcons.circle_fill
+                  : PhosphorIcons.circle,
+              color:
+                  selectedType == value ? Color(0xFFCF353F) : Color(0xFFE0E0E0),
+              size: 20,
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 8),
             Text(
               value,
               style: TextStyle(
                 color: selectedType == value ? Color(0xFFCF353F) : Colors.black,
-                fontSize: 18,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(width: 16),
           ],
         ),
       ),
@@ -184,14 +239,28 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(PhosphorIcons.radio_button_fill, color: Color(0xFFCF353F), size: 24),
+              Icon(
+                PhosphorIcons.radio_button_fill,
+                color: Color(0xFFCF353F),
+                size: 24,
+              ),
               SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(address.address, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFFCF353F))),
+                  Text(
+                    address.address,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFCF353F),
+                    ),
+                  ),
                   SizedBox(height: 4),
-                  Text(address.flatNumber, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
+                  Text(
+                    address.flatNumber,
+                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                  ),
                 ],
               ),
             ],
@@ -202,7 +271,10 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
               borderRadius: BorderRadius.circular(100),
             ),
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: Text(address.type, style: TextStyle(color: Colors.white, fontSize: 10)),
+            child: Text(
+              address.type,
+              style: TextStyle(color: Colors.white, fontSize: 10),
+            ),
           ),
         ],
       ),
@@ -216,7 +288,11 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
       appBar: AppBar(
         title: Text(
           'Delivery Address',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -230,17 +306,20 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
             onPressed: _showBottomSheet,
             icon: Icon(PhosphorIcons.plus, color: Colors.black),
             iconSize: 24,
-          )
+          ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: addresses.isEmpty
-            ? Center(child: Text("Click the '+' icon to add an address."))
-            : ListView.builder(
-          itemCount: addresses.length,
-          itemBuilder: (context, index) => _buildAddressContainer(addresses[index]),
-        ),
+        child:
+            addresses.isEmpty
+                ? Center(child: Text("Click the '+' icon to add an address."))
+                : ListView.builder(
+                  itemCount: addresses.length,
+                  itemBuilder:
+                      (context, index) =>
+                          _buildAddressContainer(addresses[index]),
+                ),
       ),
     );
   }

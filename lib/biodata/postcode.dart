@@ -1,21 +1,24 @@
-import 'package:app/biodata/appbar.dart';
-import 'package:app/custom_button.dart';
+import 'package:frontend_flutter/biodata/appbar.dart';
+import 'package:frontend_flutter/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
-
 
 class PostcodeWidget extends StatefulWidget {
   final VoidCallback onBack;
   final VoidCallback onContinue;
 
-  PostcodeWidget({required this.onBack, required this.onContinue});
+  const PostcodeWidget({
+    super.key,
+    required this.onBack,
+    required this.onContinue,
+  });
 
   @override
   _PostcodeWidgetState createState() => _PostcodeWidgetState();
 }
 
 class _PostcodeWidgetState extends State<PostcodeWidget> {
-  TextEditingController _postcodeController = TextEditingController();
+  final TextEditingController _postcodeController = TextEditingController();
 
   void _showPostcodeModal(BuildContext context) {
     showModalBottomSheet(
@@ -51,27 +54,36 @@ class _PostcodeWidgetState extends State<PostcodeWidget> {
                 _postcodeController.text.isNotEmpty
                     ? _postcodeController.text
                     : "EC1A 4HD",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
               ),
               // SizedBox(height: 4),
               Text(
                 "Central London",
-                style: TextStyle(fontSize: 20, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                  fontFamily: 'Nunito',
+                ),
               ),
               SizedBox(height: 30),
               CustomButton(
-                  onTap: () => {
-                Navigator.pop(context)
-                  },
-                  text: 'Cancel',
+                onTap: () => {Navigator.pop(context)},
+                text: 'Cancel',
                 backgroundColor: Colors.white,
                 textColor: Color(0xFFCF353F),
               ),
               SizedBox(height: 10),
-              CustomButton(onTap: () {
-                widget.onContinue();
-                Navigator.pop(context);
-              }, text: 'Confirm'),
+              CustomButton(
+                onTap: () {
+                  widget.onContinue();
+                  Navigator.pop(context);
+                },
+                text: 'Confirm',
+              ),
               SizedBox(height: 20),
             ],
           ),
@@ -84,7 +96,7 @@ class _PostcodeWidgetState extends State<PostcodeWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Appbar(onBack: widget.onBack,),
+        Appbar(onBack: widget.onBack),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
           child: Column(
@@ -92,36 +104,42 @@ class _PostcodeWidgetState extends State<PostcodeWidget> {
             children: [
               Text(
                 "Enter Postcode",
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
               ),
               SizedBox(height: 8),
               Text(
                 "Enter your postcode so that we can deliver your meal at your place.",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                  fontFamily: 'Nunito',
+                ),
               ),
               SizedBox(height: 20),
               TextField(
                 controller: _postcodeController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    PhosphorIcons.map_pin,
-                    size: 24,
-                  ),
+                  prefixIcon: Icon(PhosphorIcons.map_pin, size: 24),
                   hintText: "Enter your postcode",
                   hintStyle: TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none
+                    borderSide: BorderSide.none,
                   ),
                   fillColor: Colors.white,
                   filled: true,
                 ),
               ),
               SizedBox(height: 20),
-              CustomButton(onTap: () => {
-                _showPostcodeModal(context)
-              }, text: 'Search')
+              CustomButton(
+                onTap: () => {_showPostcodeModal(context)},
+                text: 'Search',
+              ),
             ],
           ),
         ),

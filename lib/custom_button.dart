@@ -46,7 +46,8 @@ class CustomButton extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: fontWeight,
+                fontFamily: 'Nunito', 
+                fontWeight: FontWeight.w700,
                 color: textColor,
               ),
             ),
