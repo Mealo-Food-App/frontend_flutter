@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 class OrderPage extends StatefulWidget {
+  const OrderPage({super.key});
+
   @override
   _OrderPageState createState() => _OrderPageState();
 }
@@ -33,7 +35,11 @@ class _OrderPageState extends State<OrderPage> {
               ),
             ),
             const SizedBox(height: 20),
-            selectedIndex == 0 ? _buildCurrentOrder() : _buildPastOrders(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: selectedIndex == 0 ? _buildCurrentOrder() : _buildPastOrders(),
+              ),
+            ),
           ],
         ),
       ),
@@ -54,6 +60,7 @@ class _OrderPageState extends State<OrderPage> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Nunito',
               color: selectedIndex == index ? Color(0xFFCF353F) : Color(0xFF49454F),
             ),
           ),
@@ -84,7 +91,7 @@ class _OrderPageState extends State<OrderPage> {
               children: [
                 const Text(
                   "Order #992",
-                  style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontSize: 14),
+                  style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontSize: 14, fontFamily: 'Nunito'),
                 ),
                 const SizedBox(height: 5),
                 Row(
@@ -102,13 +109,13 @@ class _OrderPageState extends State<OrderPage> {
                         children: [
                           const Text(
                             "Peri Peri Chicken Breast, Peri Pilaf Rice, Mediterran Veg and Homemade Peri Sauce",
-                            style: TextStyle(color: Color(0xFF2B2D42), fontSize: 16),
+                            style: TextStyle(color: Color(0xFF2B2D42), fontFamily: 'Nunito', fontSize: 16),
                             overflow: TextOverflow.clip,
                           ),
                           const SizedBox(height: 5),
                           const Text(
                             "Feb 15, 2025 2:00 PM",
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(fontFamily: 'Nunito', color: Colors.grey),
                           ),
                         ],
                       ),
@@ -143,13 +150,14 @@ class _OrderPageState extends State<OrderPage> {
                   decoration: InputDecoration(
                     hintText: 'Search by order ID or date',
                     border: InputBorder.none,
-                    hintStyle: TextStyle(color: Color(0xFF757575), fontSize: 16)
+                    hintStyle: TextStyle(color: Color(0xFF757575), fontFamily: 'Nunito', fontSize: 16)
                   ),
                 ),
               )
             ],
           ),
         ),
+        SizedBox(height: 12),
         Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -164,7 +172,7 @@ class _OrderPageState extends State<OrderPage> {
                   children: [
                     const Text(
                       "Order #993",
-                      style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontSize: 14),
+                      style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontFamily: 'Nunito', fontSize: 14),
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -182,13 +190,13 @@ class _OrderPageState extends State<OrderPage> {
                             children: [
                               const Text(
                                 "Peri Peri Chicken Breast, Peri Pilaf Rice, Mediterran Veg and Homemade Peri Sauce",
-                                style: TextStyle(color: Color(0xFF2B2D42), fontSize: 16),
+                                style: TextStyle(color: Color(0xFF2B2D42), fontFamily: 'Nunito', fontSize: 16, fontWeight:FontWeight.w600),
                                 overflow: TextOverflow.clip,
                               ),
                               const SizedBox(height: 5),
                               const Text(
                                 "Feb 15, 2025 2:00 PM",
-                                style: TextStyle(color: Colors.grey),
+                                style: TextStyle(fontFamily: 'Nunito', color: Colors.grey),
                               ),
                             ],
                           ),
@@ -201,6 +209,7 @@ class _OrderPageState extends State<OrderPage> {
             ),
           ),
         ),
+        SizedBox(height: 8),
         Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -215,7 +224,7 @@ class _OrderPageState extends State<OrderPage> {
                   children: [
                     const Text(
                       "Order #994",
-                      style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontSize: 14),
+                      style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontFamily: 'Nunito', fontSize: 14),
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -233,13 +242,13 @@ class _OrderPageState extends State<OrderPage> {
                             children: [
                               const Text(
                                 "Peri Peri Chicken Breast, Peri Pilaf Rice, Mediterran Veg and Homemade Peri Sauce",
-                                style: TextStyle(color: Color(0xFF2B2D42), fontSize: 16),
+                                style: TextStyle(color: Color(0xFF2B2D42), fontFamily: 'Nunito', fontSize: 16, fontWeight:FontWeight.w600),
                                 overflow: TextOverflow.clip,
                               ),
                               const SizedBox(height: 5),
                               const Text(
                                 "Feb 15, 2025 2:00 PM",
-                                style: TextStyle(color: Colors.grey),
+                                style: TextStyle(fontFamily: 'Nunito', color: Colors.grey),
                               ),
                             ],
                           ),
@@ -252,6 +261,7 @@ class _OrderPageState extends State<OrderPage> {
             ),
           ),
         ),
+        SizedBox(height: 8),
         Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -266,7 +276,7 @@ class _OrderPageState extends State<OrderPage> {
                   children: [
                     const Text(
                       "Order #995",
-                      style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontSize: 14),
+                      style: TextStyle(color: Color(0xFF757575), fontWeight: FontWeight.w500, fontFamily: 'Nunito', fontSize: 14),
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -284,13 +294,13 @@ class _OrderPageState extends State<OrderPage> {
                             children: [
                               const Text(
                                 "Peri Peri Chicken Breast, Peri Pilaf Rice, Mediterran Veg and Homemade Peri Sauce",
-                                style: TextStyle(color: Color(0xFF2B2D42), fontSize: 16),
+                                style: TextStyle(color: Color(0xFF2B2D42), fontFamily: 'Nunito', fontSize: 16, fontWeight:FontWeight.w600),
                                 overflow: TextOverflow.clip,
                               ),
                               const SizedBox(height: 5),
                               const Text(
                                 "Feb 15, 2025 2:00 PM",
-                                style: TextStyle(color: Colors.grey),
+                                style: TextStyle(fontFamily: 'Nunito', color: Colors.grey),
                               ),
                             ],
                           ),

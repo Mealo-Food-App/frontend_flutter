@@ -1,4 +1,4 @@
-import 'package:app/custom_button.dart';
+import 'package:frontend_flutter/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class SigninPage extends StatelessWidget {
@@ -40,7 +40,7 @@ class SigninPage extends StatelessWidget {
                       children: [
                         Text('AppName', style: TextStyle(fontSize: 36, color: Color(0xFFCF353F), fontFamily: 'Pacifico')),
                         SizedBox(height: 10,),
-                        Text('Facilitating Seamless Connections Between Culinary Enthusiasts and Dining Establishments', overflow: TextOverflow.clip, textAlign: TextAlign.center, style: TextStyle(fontSize: 14),),
+                        Text('Facilitating Seamless Connections Between Culinary Enthusiasts and Dining Establishments', overflow: TextOverflow.clip, textAlign: TextAlign.center, style: TextStyle(fontSize: 14, fontFamily: 'Nunito', fontWeight: FontWeight.w700),),
                         SizedBox(height: 10,),
                         CustomButton(
                           onTap: () => {
@@ -57,7 +57,7 @@ class SigninPage extends StatelessWidget {
                           },
                           text: 'Sign Up',
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 48,),
                       ],
                     ),
                   )

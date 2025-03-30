@@ -1,5 +1,5 @@
-import 'package:app/custom_button.dart';
-import 'package:app/subscriber flow/widgets/rescue_meals/order_status.dart';
+import 'package:frontend_flutter/custom_button.dart';
+import 'package:frontend_flutter/subscriber flow/widgets/rescue_meals/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
@@ -12,7 +12,8 @@ class RestaurantDetailsPage extends StatefulWidget {
   State<RestaurantDetailsPage> createState() => _RestaurantDetailsPageState();
 }
 
-class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with SingleTickerProviderStateMixin {
+class _RestaurantDetailsPageState extends State<RestaurantDetailsPage>
+    with SingleTickerProviderStateMixin {
   int mealCount = 1;
   int selectedIndex = 0;
   int selectedSlot = 0;
@@ -20,16 +21,21 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF9F9F9),
       appBar: AppBar(
         title: Text(
           widget.restaurantData["name"],
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Nunito',
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(PhosphorIcons.caret_left, size: 24, ),
+          icon: Icon(PhosphorIcons.caret_left, size: 24),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -58,17 +64,38 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
                       children: [
                         Text(
                           widget.restaurantData["name"],
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Nunito',
+                          ),
                         ),
                         const SizedBox(height: 4),
-                        Text(widget.restaurantData["distance"], style: const TextStyle(color: Color(0xFFB2B2B2), fontSize: 12)),
+                        Text(
+                          widget.restaurantData["distance"],
+                          style: const TextStyle(
+                            color: Color(0xFFB2B2B2),
+                            fontSize: 12,
+                            fontFamily: 'Nunito',
+                          ),
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(PhosphorIcons.star_fill, color: Color(0xFFFFCC3D)),
+                        const Icon(
+                          PhosphorIcons.star_fill,
+                          color: Color(0xFFFFCC3D),
+                        ),
                         const SizedBox(width: 4),
-                        Text("${widget.restaurantData["rating"]}", style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+                        Text(
+                          "${widget.restaurantData["rating"]}",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            fontFamily: 'Nunito',
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -79,31 +106,66 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
                   height: 48,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildTab(
-                          Text("One Day", style: TextStyle(color: selectedIndex == 0 ? Color(0xFFCF353F) : Color(0xFF49454F), fontSize: 14, fontWeight: selectedIndex == 0 ? FontWeight.w600 : FontWeight.normal),),
-                          0
+                        Text(
+                          "One Day",
+                          style: TextStyle(
+                            color:
+                                selectedIndex == 0
+                                    ? Color(0xFFCF353F)
+                                    : Color(0xFF49454F),
+                            fontSize: 14,
+                            fontWeight:
+                                selectedIndex == 0
+                                    ? FontWeight.w600
+                                    : FontWeight.normal,
+                          ),
+                        ),
+                        0,
                       ),
                       _buildTab(
                         Row(
                           children: [
-                            SizedBox(width: 85,child: Text("Weekly Plan", style: TextStyle(color: selectedIndex == 1 ? Color(0xFFCF353F) : Color(0xFF49454F), fontSize: 14, fontWeight: selectedIndex == 1 ? FontWeight.w600 : FontWeight.normal))),
+                            SizedBox(
+                              width: 85,
+                              child: Text(
+                                "Weekly Plan",
+                                style: TextStyle(
+                                  color:
+                                      selectedIndex == 1
+                                          ? Color(0xFFCF353F)
+                                          : Color(0xFF49454F),
+                                  fontSize: 14,
+                                  fontWeight:
+                                      selectedIndex == 1
+                                          ? FontWeight.w600
+                                          : FontWeight.normal,
+                                ),
+                              ),
+                            ),
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 10),
                               decoration: BoxDecoration(
                                 color: Color(0xFFCF353F),
-                                borderRadius: BorderRadius.circular(100)
+                                borderRadius: BorderRadius.circular(100),
                               ),
-                              child: Text("POPULAR", style: TextStyle(fontSize: 14, color: Colors.white),),
-                            )
+                              child: Text(
+                                "POPULAR",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                          1
+                        1,
                       ),
                     ],
                   ),
@@ -113,11 +175,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: _pricingSection(),
-          )
+          Positioned(bottom: 0, left: 0, child: _pricingSection()),
         ],
       ),
     );
@@ -132,10 +190,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
       },
       child: Column(
         children: [
-          SizedBox(
-            width: 180,
-            child: Center(child: tabContent),
-          ),
+          SizedBox(width: 180, child: Center(child: tabContent)),
           if (selectedIndex == index)
             Container(
               margin: const EdgeInsets.only(top: 10),
@@ -154,7 +209,11 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
       children: [
         const Text(
           "How many meals do you need?",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
+          ),
         ),
         const SizedBox(height: 8),
         Row(
@@ -170,7 +229,10 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 "$mealCount",
-                style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             _counterButton(Icons.add, () {
@@ -183,7 +245,11 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
         const SizedBox(height: 8),
         const Text(
           "Pickup Time Slot",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
+          ),
         ),
         const SizedBox(height: 8),
         Row(
@@ -203,7 +269,11 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
       children: [
         const Text(
           "How many meals do you need this week?",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
+          ),
         ),
         const SizedBox(height: 8),
         Row(
@@ -219,7 +289,10 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 "$mealCount",
-                style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             _counterButton(Icons.add, () {
@@ -232,7 +305,11 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
         const SizedBox(height: 8),
         const Text(
           "Pickup Time Slot",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Nunito',
+          ),
         ),
         const SizedBox(height: 8),
         Row(
@@ -275,7 +352,9 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: isSelected ? Color(0xFFCF353F) : Color(0xFF2B2D42)),
+            border: Border.all(
+              color: isSelected ? Color(0xFFCF353F) : Color(0xFF2B2D42),
+            ),
             color: Colors.transparent,
           ),
           child: Column(
@@ -291,9 +370,9 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
               Text(
                 time,
                 style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: isSelected ? Color(0xFFCF353F) : Color(0xFF2B2D42)
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: isSelected ? Color(0xFFCF353F) : Color(0xFF2B2D42),
                 ),
               ),
             ],
@@ -319,32 +398,32 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
                   widget.restaurantData["oldPrice"],
                   style: TextStyle(
                     fontSize: 12,
-                    color: Color(0xFF757575)
+                    color: Color(0xFF757575),
+                    fontFamily: 'Nunito',
                   ),
                 ),
                 Text(
                   widget.restaurantData["price"],
                   style: TextStyle(
-                      fontSize: 24,
-                      color: Color(0xFF2B2D42)
+                    fontSize: 24,
+                    color: Color(0xFF2B2D42),
+                    fontFamily: 'Nunito',
                   ),
                 ),
               ],
             ),
             SizedBox(
               width: 200,
-                child: CustomButton(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OrderStatusPage(),
-                        ),
-                      );
-                    },
-                    text: "Rescue and Pay"
-                )
-            )
+              child: CustomButton(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OrderStatusPage()),
+                  );
+                },
+                text: "Rescue and Pay",
+              ),
+            ),
           ],
         ),
       ),

@@ -1,19 +1,21 @@
-import 'package:app/subscriber flow/screens/home_page.dart';
-import 'package:app/subscriber flow/screens/order_page.dart';
-import 'package:app/subscriber flow/screens/profile_page.dart';
-import 'package:app/subscriber flow/screens/rescue_meals.dart';
+import 'package:frontend_flutter/subscriber flow/screens/home_page.dart';
+import 'package:frontend_flutter/subscriber flow/screens/order_page.dart';
+import 'package:frontend_flutter/subscriber flow/screens/profile_page.dart';
+import 'package:frontend_flutter/subscriber flow/screens/rescue_meals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 class NavigationWidget extends StatefulWidget {
+  const NavigationWidget({super.key});
+
   @override
   _NavigationWidgetState createState() => _NavigationWidgetState();
 }
 
 class _NavigationWidgetState extends State<NavigationWidget> {
   int _selectedIndex = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -69,6 +71,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
+                                fontFamily: 'Nunito',
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
