@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "32068264533",
+    "project_id": "mealo-977c4",
+    "storage_bucket": "mealo-977c4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32068264533:android:c2bb7298dcf4abdb1aaadc",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2CbkdVKzebvUWBNJKBEX4S5XjFPZVCzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

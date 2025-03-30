@@ -6,9 +6,12 @@ environment:
 version: 1.0.0+1
 
 dependencies:
+  firebase_auth: ^3.11.2
+  firebase_core: ^1.19.0
   flutter:
     sdk: flutter
   flutter_phosphor_icons: ^0.0.1+6
+  fluttertoast: ^8.2.12
   google_fonts: ^6.1.0
 
 flutter:
