@@ -1,4 +1,5 @@
 import 'package:app/biodata/appbar.dart';
+import 'package:app/utils/config_size.dart';
 import 'package:flutter/material.dart';
 
 class SubIntroWidget extends StatelessWidget {
@@ -50,9 +51,9 @@ class SubIntroWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildRadioOption("Home"),
-                        _buildRadioOption("Office"),
-                        _buildRadioOption("Other"),
+                        _buildRadioOption(context, "Home"),
+                        _buildRadioOption(context, "Office"),
+                        _buildRadioOption(context, "Other"),
                       ],
                     ),
                     SizedBox(height: 20),
@@ -104,8 +105,9 @@ class SubIntroWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildRadioOption(String label) {
+  Widget _buildRadioOption(BuildContext context, String label) {
     return Container(
+      width: SizeConfig.customWidth(context, 115),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.grey.shade300, width: 1),

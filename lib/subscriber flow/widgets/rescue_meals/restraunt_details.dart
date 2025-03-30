@@ -20,6 +20,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> with Sing
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF9F9F9),
       appBar: AppBar(
         title: Text(
           widget.restaurantData["name"],

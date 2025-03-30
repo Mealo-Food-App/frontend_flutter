@@ -12,29 +12,32 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 11),
-              height: 48,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
+      child: Scaffold(
+        backgroundColor: Color(0xFFF9F9F9),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 11),
+                height: 48,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildTab("Current Order", 0),
+                    _buildTab("Past Order", 1),
+                  ],
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildTab("Current Order", 0),
-                  _buildTab("Past Order", 1),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            selectedIndex == 0 ? _buildCurrentOrder() : _buildPastOrders(),
-          ],
+              const SizedBox(height: 20),
+              selectedIndex == 0 ? _buildCurrentOrder() : _buildPastOrders(),
+            ],
+          ),
         ),
       ),
     );

@@ -41,6 +41,7 @@ class _RescueMealsPageState extends State<RescueMealsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF9F9F9),
       body: Padding(
         padding: const EdgeInsets.only(right: 16.0, left: 16, top: 16),
         child: Column(

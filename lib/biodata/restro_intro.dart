@@ -67,7 +67,7 @@ class RestroIntroWidget extends StatelessWidget {
                       width: double.infinity,
                       height: 50,
                       child: CustomButton(onTap: () => {
-                        Navigator.pushNamed(context, '/navigate')
+                        Navigator.pushNamed(context, '/restro_navigate')
                       }, text: 'Continue'),
                     ),
                   ],

@@ -2,7 +2,7 @@ import 'package:app/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
-class ProfileScreen extends StatelessWidget {
+class RestroProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +30,9 @@ class ProfileScreen extends StatelessWidget {
                           child: Text('Hello'),
                           radius: 36,
                         ),
+                        SizedBox(height: 8,),
                         Text(
-                          'John Doe',
+                          'Urban Bites Cafe',
                           style: TextStyle(
                               color: Color(0xFF2B2D42),
                               fontSize: 18,
@@ -55,11 +56,9 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 5),
               _buildMenuSection('General', [
-                _buildMenuItem('Subscription Details', PhosphorIcons.credit_card, context),
-                SizedBox(height: 3),
                 _buildMenuItem('Notification Settings', PhosphorIcons.bell_simple, context),
                 SizedBox(height: 3),
-                _buildMenuItem('Delivery Address', PhosphorIcons.map_pin, context),
+                _buildMenuItem('Service Area Configuration', PhosphorIcons.map_pin, context),
               ]),
               _buildMenuSection('Support', [
                 _buildMenuItem('FAQs', PhosphorIcons.question, context),
@@ -102,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
         if (isSupport) {
           showContactBottomSheet(context);
         } else {
-          Navigator.pushNamed(context, '/$title');
+          Navigator.pushNamed(context, '/restro $title');
         }
       },
       child: Container(
@@ -119,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                 Icon(icon, color: Colors.black, size: 24,),
                 SizedBox(width: 10),
                 Text(title,
-                    style: TextStyle(fontSize: 16, color: Color(0xFF2B2D42), fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 16, color: Color(0xFF2B2D42), fontWeight: FontWeight.w500),
                 )
               ],
             ),
@@ -131,66 +130,66 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-  void showContactBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
+void showContactBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) => Container(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(16),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 40,
-              height: 5,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            const SizedBox(height: 16),
-            _buildContactItem(
-              icon: PhosphorIcons.phone,
-              title: "Contact Number",
-              subtitle: "+44 90083 38373",
-            ),
-            const SizedBox(height: 12),
-            _buildContactItem(
-              icon: PhosphorIcons.envelope,
-              title: "Email",
-              subtitle: "appname@domain.com",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildContactItem({required IconData icon, required String title, required String subtitle}) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.pink.shade50,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: Colors.pink),
-          const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              Text(subtitle, style: TextStyle(color: Colors.grey.shade600)),
-            ],
+          Container(
+            width: 40,
+            height: 5,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          const SizedBox(height: 16),
+          _buildContactItem(
+            icon: PhosphorIcons.phone,
+            title: "Contact Number",
+            subtitle: "+44 90083 38373",
+          ),
+          const SizedBox(height: 12),
+          _buildContactItem(
+            icon: PhosphorIcons.envelope,
+            title: "Email",
+            subtitle: "appname@domain.com",
           ),
         ],
       ),
-    );
+    ),
+  );
+}
+
+Widget _buildContactItem({required IconData icon, required String title, required String subtitle}) {
+  return Container(
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: Colors.pink.shade50,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Row(
+      children: [
+        Icon(icon, color: Colors.pink),
+        const SizedBox(width: 12),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(subtitle, style: TextStyle(color: Colors.grey.shade600)),
+          ],
+        ),
+      ],
+    ),
+  );
 }

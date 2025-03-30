@@ -1,4 +1,10 @@
 import 'package:app/biodata_page.dart';
+import 'package:app/restaurant%20flow/screens/restro_add_meal.dart';
+import 'package:app/restaurant%20flow/screens/restro_add_rescue_meals.dart';
+import 'package:app/restaurant%20flow/screens/restro_home.dart';
+import 'package:app/restaurant%20flow/screens/restro_notification.dart';
+import 'package:app/restaurant%20flow/screens/restro_payment_deatils.dart';
+import 'package:app/restaurant%20flow/widgets/restro_navigation.dart';
 import 'package:app/subscriber flow/screens/home_page.dart';
 import 'package:app/signin_page.dart';
 import 'package:app/subscriber flow/widgets/my_navigation.dart';
@@ -48,7 +54,13 @@ class MyApp extends StatelessWidget {
         '/create_subscription' : (context) => CreateSubscriptionPage(),
         '/pick_restro': (context) => PickRestaurantsPage(),
         '/add_meal': (context) => AddMealsPage(),
-        '/confirm': (context) => ConfirmSubscriptionPage()
+        '/confirm': (context) => ConfirmSubscriptionPage(),
+        '/restro_navigate': (context) => RestroNavigationWidget(),
+        '/restro_home': (context) => RestroHomePage(),
+        '/restro_add_meal': (context) => RestroAddMealPage(),
+        '/restro_add_rescue_meal': (context) => RestroAddRescueMeals(),
+        '/restro Notification Settings': (context) => RestroNotificationSettingsPage(),
+        '/restro Service Area Configuration': (context) => RestroPaymentDetails(),
       },
     );
   }

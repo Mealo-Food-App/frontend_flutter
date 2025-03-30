@@ -212,6 +212,7 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF9F9F9),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(

@@ -8,13 +8,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF9F9F9),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/create_subscription');
         },
         backgroundColor: Colors.white,
         child: Icon(
-          Icons.add,
+          PhosphorIcons.plus,
           color: Color(0xFFFF4949),
           size: 24,
         )

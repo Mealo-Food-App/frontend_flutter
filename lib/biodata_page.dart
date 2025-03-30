@@ -33,6 +33,7 @@ class _BioDataPageState extends State<BioDataPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xFFF9F9F9),
         body: PageView(
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),

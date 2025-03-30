@@ -1,4 +1,5 @@
 import 'package:app/custom_button.dart';
+import 'package:app/utils/config_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
@@ -53,7 +54,8 @@ class _AddMealsPageState extends State<AddMealsPage> {
           SizedBox(height: 16,),
           _buildMealTypeTabs(),
           SizedBox(
-            height: 518,
+            // height: SizeConfig.customHeight(context, 518),
+            height: SizeConfig.screenHeight(context) - SizeConfig.customHeight(context, 285),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -211,7 +213,15 @@ class _AddMealsPageState extends State<AddMealsPage> {
             margin: EdgeInsets.symmetric(vertical: 12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.white
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1), // Shadow color
+                  offset: Offset(2, 4), // X and Y offset
+                  blurRadius: 6, // Blur intensity
+                  spreadRadius: 1, // Spread of shadow
+                ),
+              ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

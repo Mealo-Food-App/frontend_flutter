@@ -1,17 +1,18 @@
-import 'package:app/subscriber flow/screens/home_page.dart';
-import 'package:app/subscriber flow/screens/order_page.dart';
-import 'package:app/subscriber flow/screens/profile_page.dart';
-import 'package:app/subscriber flow/screens/rescue_meals.dart';
+import 'package:app/restaurant%20flow/screens/restro_home.dart';
+import 'package:app/restaurant%20flow/screens/restro_menu.dart';
+import 'package:app/restaurant%20flow/screens/restro_order.dart';
+import 'package:app/restaurant%20flow/screens/restro_profile.dart';
+import 'package:app/restaurant%20flow/screens/restro_rescue_meals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
-class NavigationWidget extends StatefulWidget {
+class RestroNavigationWidget extends StatefulWidget {
   @override
-  _NavigationWidgetState createState() => _NavigationWidgetState();
+  _RestroNavigationWidgetState createState() => _RestroNavigationWidgetState();
 }
 
-class _NavigationWidgetState extends State<NavigationWidget> {
+class _RestroNavigationWidgetState extends State<RestroNavigationWidget> {
   int _selectedIndex = 0;
   PageController _pageController = PageController();
 
@@ -97,10 +98,11 @@ class _NavigationWidgetState extends State<NavigationWidget> {
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    HomePage(),
-                    RescueMealsPage(),
-                    OrderPage(),
-                    ProfileScreen()
+                    RestroHomePage(),
+                    RestroMenu(),
+                    RestroRescueMeals(),
+                    RestroOrderPage(),
+                    RestroProfileScreen()
                   ],
                 ),
               ),
@@ -114,9 +116,10 @@ class _NavigationWidgetState extends State<NavigationWidget> {
           onDestinationSelected: _onItemTapped,
           destinations: [
             _buildNavItem(PhosphorIcons.house, PhosphorIcons.house_fill, 'Home', 0),
-            _buildNavItem(PhosphorIcons.cooking_pot, PhosphorIcons.cooking_pot_fill, 'Rescue Meals', 1),
-            _buildNavItem(PhosphorIcons.shopping_bag, PhosphorIcons.shopping_bag_fill,  'Orders', 2),
-            _buildNavItem(PhosphorIcons.user_circle, PhosphorIcons.user_circle_fill, 'Profile', 3),
+            _buildNavItem(PhosphorIcons.cooking_pot, PhosphorIcons.cooking_pot_fill, 'Menu', 1),
+            _buildNavItem(PhosphorIcons.list_dashes, PhosphorIcons.list_dashes, 'Rescue Meal', 2),
+            _buildNavItem(PhosphorIcons.shopping_bag, PhosphorIcons.shopping_bag_fill,  'Orders', 3),
+            _buildNavItem(PhosphorIcons.user_circle, PhosphorIcons.user_circle_fill, 'Profile', 4),
           ],
         ),
       ),
@@ -126,8 +129,8 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   NavigationDestination _buildNavItem(IconData icon, IconData selectedIcon, String label, int index) {
     return NavigationDestination(
       icon: _selectedIndex == index  ?
-        Icon(selectedIcon, color: Colors.white,) :
-        Icon(icon, color: Colors.black,),
+      Icon(selectedIcon, color: Colors.white,) :
+      Icon(icon, color: Colors.black,),
       label: label,
     );
   }
