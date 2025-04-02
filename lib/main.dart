@@ -14,14 +14,12 @@ import 'package:frontend_flutter/subscriber%20flow/widgets/home%20page%20flow/pi
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   // Allow individual screens to control their own SystemUiOverlayStyle
   // by not setting a global style here
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
