@@ -13,6 +13,7 @@ dependencies:
   flutter_phosphor_icons: ^0.0.1+6
   fluttertoast: ^8.2.12
   google_fonts: ^6.1.0
+  supabase_flutter: ^2.8.4
 
 flutter:
   uses-material-design: true
