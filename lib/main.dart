@@ -15,11 +15,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   // Allow individual screens to control their own SystemUiOverlayStyle
   // by not setting a global style here
   WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://blwpqvchlhwkwxsnqgsc.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsd3BxdmNobGh3a3d4c25xZ3NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM1OTEzNzIsImV4cCI6MjA1OTE2NzM3Mn0.0L9x3RAYk_tdfV_BrXqMkSPHX2iKt8kM5RQ5NIOgC_w',
+  );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
