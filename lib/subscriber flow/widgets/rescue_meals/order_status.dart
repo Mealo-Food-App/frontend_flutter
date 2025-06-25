@@ -16,7 +16,7 @@ class OrderStatusPage extends StatefulWidget {
 class _OrderStatusPageState extends State<OrderStatusPage> {
   Future<void> _startStripePayment() async {
     try {
-      final url = Uri.parse('https://your-render-url.onrender.com/create-payment-intent');
+      final url = Uri.parse('https://frontend-flutter-xxrl.onrender.com/create-payment-intent');
 
       final response = await http.post(
         url,
