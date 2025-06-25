@@ -10,7 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_phosphor_icons: ^0.0.1+6
+  flutter_stripe: ^11.5.0
   google_fonts: ^6.1.0
+  http: ^1.4.0
   supabase_flutter: ^2.8.4
 
 flutter:

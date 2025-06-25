@@ -1,3 +1,4 @@
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:frontend_flutter/biodata_page.dart';
 import 'package:frontend_flutter/subscriber flow/screens/home_page.dart';
 import 'package:frontend_flutter/signin_page.dart';
@@ -21,6 +22,10 @@ void main() async {
   // Allow individual screens to control their own SystemUiOverlayStyle
   // by not setting a global style here
   WidgetsFlutterBinding.ensureInitialized();
+
+  Stripe.publishableKey = 'pk_test_51RdlXTRkrdnZyuDPwWgcKnFnnb37u8g5YjDCF1Rpo4TAKpb18FaoXS2hm9ZBzLALc64BnMxwFIdJcYJg3xFUtdlj00vDgxKG4r';
+  await Stripe.instance.applySettings();
+
   await Supabase.initialize(
     url: 'https://blwpqvchlhwkwxsnqgsc.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsd3BxdmNobGh3a3d4c25xZ3NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM1OTEzNzIsImV4cCI6MjA1OTE2NzM3Mn0.0L9x3RAYk_tdfV_BrXqMkSPHX2iKt8kM5RQ5NIOgC_w',
