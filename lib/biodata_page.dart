@@ -1,4 +1,5 @@
 import 'package:frontend_flutter/biodata/phone.dart';
+import 'package:frontend_flutter/biodata/otp.dart';
 import 'package:frontend_flutter/biodata/postcode.dart';
 import 'package:frontend_flutter/biodata/restro_intro.dart';
 import 'package:frontend_flutter/biodata/role_select.dart';
@@ -14,7 +15,9 @@ class BioDataPage extends StatefulWidget {
 
 class _BioDataPageState extends State<BioDataPage> {
   final PageController _pageController = PageController();
-  late int _selectedRole = 0;
+
+  int _selectedRole = 0;
+  String _phoneNumber = "";
 
   void _nextPage() {
     _pageController.nextPage(
@@ -38,17 +41,41 @@ class _BioDataPageState extends State<BioDataPage> {
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),
           children: [
+            // Step 1: Role selection
             RoleSelectionWidget(
               onContinue: (selectedRole) {
-                print("$selectedRole");
                 setState(() {
                   _selectedRole = selectedRole;
                 });
                 _nextPage();
               },
             ),
-            PhoneNumberEntryWidget(onBack: _prevPage, onContinue: _nextPage),
-            PostcodeWidget(onBack: _prevPage, onContinue: _nextPage),
+
+            // Step 2: Phone number entry
+            PhoneNumberEntryWidget(
+              onBack: _prevPage,
+              onContinue: _nextPage,
+              onPhoneCaptured: (phone) {
+                setState(() {
+                  _phoneNumber = phone;
+                });
+              },
+            ),
+
+            // Step 3: OTP verification
+            OTPWidget(
+              onBack: _prevPage,
+              onContinue: _nextPage,
+              phoneNumber: _phoneNumber,
+            ),
+
+            // Step 4: Postcode entry
+            PostcodeWidget(
+              onBack: _prevPage,
+              onContinue: _nextPage,
+            ),
+
+            // Step 5: Role-based intro screen
             if (_selectedRole == 0)
               SubIntroWidget(onBack: _prevPage)
             else

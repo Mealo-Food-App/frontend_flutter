@@ -22,8 +22,8 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
         url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'amount': 4986, // in paise (₹49.86)
-          'currency': 'inr',
+          'amount': 4986,
+          'currency': 'usd',
         }),
       );
 

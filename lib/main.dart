@@ -23,8 +23,10 @@ void main() async {
   // by not setting a global style here
   WidgetsFlutterBinding.ensureInitialized();
 
-  Stripe.publishableKey = 'pk_test_51RdlXTRkrdnZyuDPwWgcKnFnnb37u8g5YjDCF1Rpo4TAKpb18FaoXS2hm9ZBzLALc64BnMxwFIdJcYJg3xFUtdlj00vDgxKG4r';
-  await Stripe.instance.applySettings();
+  // Stripe.publishableKey = 'pk_test_51RdlXTRkrdnZyuDPwWgcKnFnnb37u8g5YjDCF1Rpo4TAKpb18FaoXS2hm9ZBzLALc64BnMxwFIdJcYJg3xFUtdlj00vDgxKG4r';
+  // Stripe.merchantIdentifier = 'merchant.com.example'; // Needed for Apple Pay, but safe to include anyway
+  // Stripe.urlScheme = 'flutterstripe';
+  // await Stripe.instance.applySettings();
 
   await Supabase.initialize(
     url: 'https://blwpqvchlhwkwxsnqgsc.supabase.co',
