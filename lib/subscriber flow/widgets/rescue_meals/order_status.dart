@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:http/http.dart' as http;
 
+
 class OrderStatusPage extends StatefulWidget {
+
   const OrderStatusPage({super.key});
 
   @override
@@ -14,7 +16,9 @@ class OrderStatusPage extends StatefulWidget {
 }
 
 class _OrderStatusPageState extends State<OrderStatusPage> {
+  bool _isLoading = false;
   Future<void> _startStripePayment() async {
+    setState(() => _isLoading = true);
     try {
       final url = Uri.parse('https://frontend-flutter-xxrl.onrender.com/create-payment-intent');
 
@@ -49,6 +53,8 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("❌ Payment Failed: $e")),
       );
+    } finally {
+      setState(() => _isLoading = false);
     }
   }
 
@@ -135,7 +141,9 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
               ),
             ),
             const Spacer(),
-            CustomButton(onTap: _startStripePayment, text: "Collect Now"),
+            _isLoading
+                ? const CircularProgressIndicator()
+                : CustomButton(onTap: _startStripePayment, text: "Collect Now"),
           ],
         ),
       ),
