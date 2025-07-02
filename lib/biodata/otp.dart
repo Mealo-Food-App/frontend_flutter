@@ -8,7 +8,7 @@ import 'package:frontend_flutter/custom_button.dart';
 class OTPWidget extends StatefulWidget {
   final VoidCallback onBack;
   final VoidCallback onContinue;
-  final String phoneNumber; // <-- added
+  final String phoneNumber;
 
   const OTPWidget({
     super.key,
@@ -49,10 +49,18 @@ class _OTPPageState extends State<OTPWidget> {
   }
 
   Future<void> verifyOtp(String phoneNumber, String code) async {
+    final accountSid = 'ACa7d16550865815c5514bd7d4026b16a0';
+    final authToken = 'ce4bbbe1808481921d089ff50a64bfba';
+    final serviceSid = 'VAa8e07fb8be658426db63b4a75412190b';
+
+    final basicAuth =
+        'Basic ${base64Encode(utf8.encode('$accountSid:$authToken'))}';
+
     final response = await http.post(
-      Uri.parse('https://verify.twilio.com/v2/Services/YOUR_SERVICE_SID/VerificationCheck'),
+      Uri.parse(
+          'https://verify.twilio.com/v2/Services/$serviceSid/VerificationCheck'),
       headers: {
-        'Authorization': 'Basic ${base64Encode(utf8.encode('YOUR_ACCOUNT_SID:YOUR_AUTH_TOKEN'))}',
+        'Authorization': basicAuth,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: {
@@ -61,9 +69,9 @@ class _OTPPageState extends State<OTPWidget> {
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print('OTP verified successfully!');
-      widget.onContinue(); // Navigate if success
+      widget.onContinue();
     } else {
       print('Failed to verify OTP: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
@@ -152,12 +160,14 @@ class _OTPPageState extends State<OTPWidget> {
                     visible: _isResendVisible,
                     child: GestureDetector(
                       onTap: () {
-                        // Optionally call sendOtp(widget.phoneNumber);
                         setState(() {
                           _secondsRemaining = 30;
                           _isResendVisible = false;
                           _startTimer();
                         });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Please re-request OTP from previous screen.')),
+                        );
                       },
                       child: Text(
                         'Resend Code',

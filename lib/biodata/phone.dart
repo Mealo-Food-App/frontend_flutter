@@ -1,4 +1,4 @@
-import 'dart:convert'; // Needed for base64Encode
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:frontend_flutter/biodata/appbar.dart';
@@ -7,11 +7,13 @@ import 'package:frontend_flutter/custom_button.dart';
 class PhoneNumberEntryWidget extends StatefulWidget {
   final VoidCallback onBack;
   final VoidCallback onContinue;
+  final ValueChanged<String> onPhoneCaptured;
 
   const PhoneNumberEntryWidget({
     super.key,
     required this.onBack,
     required this.onContinue,
+    required this.onPhoneCaptured,
   });
 
   @override
@@ -22,10 +24,18 @@ class _PhoneNumberEntryWidgetState extends State<PhoneNumberEntryWidget> {
   final TextEditingController _phoneController = TextEditingController();
 
   Future<void> sendOtp(String phoneNumber) async {
+    final accountSid = 'ACa7d16550865815c5514bd7d4026b16a0';
+    final authToken = 'ce4bbbe1808481921d089ff50a64bfba';
+    final serviceSid = 'VAa8e07fb8be658426db63b4a75412190b';
+
+    final basicAuth =
+        'Basic ${base64Encode(utf8.encode('$accountSid:$authToken'))}';
+
     final response = await http.post(
-      Uri.parse('https://verify.twilio.com/v2/Services/YOUR_SERVICE_SID/Verifications'),
+      Uri.parse(
+          'https://verify.twilio.com/v2/Services/$serviceSid/Verifications'),
       headers: {
-        'Authorization': 'Basic ${base64Encode(utf8.encode('YOUR_ACCOUNT_SID:YOUR_AUTH_TOKEN'))}',
+        'Authorization': basicAuth,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: {
@@ -34,8 +44,9 @@ class _PhoneNumberEntryWidgetState extends State<PhoneNumberEntryWidget> {
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print('OTP sent successfully!');
+      widget.onPhoneCaptured(phoneNumber);
       widget.onContinue();
     } else {
       print('Failed to send OTP: ${response.body}');
